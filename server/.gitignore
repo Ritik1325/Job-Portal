@@ -1,17 +1,28 @@
+@'
 # Node modules
 node_modules/
+server/node_modules/
+client/node_modules/
 
 # Environment variables
 .env
+server/.env
+client/.env
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
 
 # OS files
 .DS_Store
+Thumbs.db
 
-# Build output
+# Build output (do NOT push your built frontend)
 client/dist/
+dist/
+build/
+
+# IDE/editor folders
+.vscode/
+'@ | Set-Content -Path .gitignore -Encoding UTF8
