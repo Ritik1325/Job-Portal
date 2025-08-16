@@ -28,28 +28,16 @@ app.use(cookieParser())
 
 
 
-// const routefiles=fs.readdirSync('./routes');
+const routefiles=fs.readdirSync('./routes');
 
-// routefiles.forEach(file=>{
+routefiles.forEach(file=>{
 
-//     import(`./routes/${file}`).then((route)=>{
-//         app.use(`/job-portal/`,route.default)
-//     }).catch(err=>{
-//         console.log(`error importing ${file}`,err.message);
-//     })
-// })
-
-const routefiles = fs.readdirSync('./routes');
-
-routefiles.forEach(file => {
-  import(`./routes/${file}`).then((route) => {
-    const routeName = file.replace('.js', ''); // e.g. "auth.js" → "auth"
-    app.use(`/job-portal/${routeName}`, route.default);
-    console.log(`✅ Loaded route: /job-portal/${routeName}`);
-  }).catch(err => {
-    console.error(`❌ Error importing ${file}:`, err.message);
-  });
-});
+    import(`./routes/${file}`).then((route)=>{
+        app.use(`/job-portal/`,route.default)
+    }).catch(err=>{
+        console.log(`error importing ${file}`,err.message);
+    })
+})
 
 
 app.get('/',(req,res)=>{
