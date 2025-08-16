@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://job-portal-backend-2ula.onrender.com", 
+  baseURL:import.meta.env.VITE_API_URL, 
   withCredentials:true,
 });
 
