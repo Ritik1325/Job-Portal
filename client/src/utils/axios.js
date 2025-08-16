@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/job-portal", 
+  baseURL: "https://job-portal-backend-2ula.onrender.com", 
   withCredentials:true,
 });
 
