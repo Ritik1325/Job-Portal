@@ -50,7 +50,7 @@ const UserProfile = () => {
                     <h1 className="text-bold text-gray-400 sm:text-xl text-center">{user.email}</h1>
                 </div>
                 <div>
-                    <h1 className="mt-6 sm:text-2xl font-bold text-amber-300">{user.role.toUpperCase()}</h1>
+                    <h1 className="mt-6 sm:text-2xl font-bold text-amber-300">{user.role}</h1>
                 </div>
                 <div className="mt-6">
                     <h1 className="lg:text-2xl text-green-400 font-bold">{user.role === "employer"
