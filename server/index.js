@@ -34,7 +34,7 @@ const routefiles=fs.readdirSync('./routes');
 routefiles.forEach(file=>{
 
     import(`./routes/${file}`).then((route)=>{
-        app.use(`/${https://job-portal-backend-2ula.onrender.com}/`,route.default)
+        app.use(`/job-portal/`,route.default)
     }).catch(err=>{
         console.log(`error importing ${file}`,err.message);
     })
