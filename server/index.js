@@ -17,7 +17,7 @@ const app=express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.set('trust proxy', 1);
+
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
@@ -34,7 +34,7 @@ const routefiles=fs.readdirSync('./routes');
 routefiles.forEach(file=>{
 
     import(`./routes/${file}`).then((route)=>{
-        app.use(`/job-portal/`,route.default)
+        app.use(`${https://job-portal-backend-2ula.onrender.com}/`,route.default)
     }).catch(err=>{
         console.log(`error importing ${file}`,err.message);
     })
