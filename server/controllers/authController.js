@@ -32,7 +32,7 @@ export const registerUser = async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure: false, // only in production (https)
+            secure: true, // only in production (https)
             maxAge: 7 * 24 * 60 * 60 * 1000,
         }).status(201).json({
             id: user._id,
@@ -89,6 +89,7 @@ export const loginUser = async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
+            token
         })
 
     } catch (error) {
