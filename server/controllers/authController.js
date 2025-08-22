@@ -12,7 +12,7 @@ export const registerUser = async (req, res) => {
         const userExists = await User.findOne({ email });
 
         if (userExists) {
-            return res.status(409).json({message:'user already Exists'});
+            return res.status(409).json({ message: 'user already Exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -45,7 +45,7 @@ export const registerUser = async (req, res) => {
 
 
     } catch (error) {
-        res.status(500).json({message:error.message});
+        res.status(500).json({ message: error.message });
 
     }
 
@@ -63,25 +63,26 @@ export const loginUser = async (req, res) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(401).json({message:'Invalid password or email'});
+            return res.status(401).json({ message: 'Invalid password or email' });
         }
 
         const confirmPass = await bcrypt.compare(password, user.password);
 
         if (!confirmPass) {
-            return res.status(401).json({message:'Invalid password or email'});
+            return res.status(401).json({ message: 'Invalid password or email' });
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '7d',
         })
 
-        
+
 
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure: false, 
+            secure: true, 
+            sameSite: 'None',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         }).status(200).json({
             id: user._id,
@@ -100,7 +101,7 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = (req, res) => {
     try {
-        res.clearCookie("token").status(200).json({message:"Logged Out"});
+        res.clearCookie("token").status(200).json({ message: "Logged Out" });
         console.log('Logout successfully');
 
     } catch (error) {
