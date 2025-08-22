@@ -33,6 +33,7 @@ const routefiles=fs.readdirSync('./routes');
 routefiles.forEach(file=>{
 
     import(`./routes/${file}`).then((route)=>{
+        console.log("Loaded route file:", file);
         app.use(`/job-portal/`,route.default)
     }).catch(err=>{
         console.log(`error importing ${file}`,err.message);
