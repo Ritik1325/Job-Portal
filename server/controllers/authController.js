@@ -76,12 +76,7 @@ export const loginUser = async (req, res) => {
             expiresIn: '7d',
         })
 
-        if(user.token===token){
-            console.log("already logged IN");
-            return res.status(401).json({message:"already logged In"});
-         
-            
-        }
+        
 
 
         res.cookie('token', token, {
@@ -93,8 +88,6 @@ export const loginUser = async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
-            token
-
         })
 
     } catch (error) {
