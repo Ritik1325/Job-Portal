@@ -21,10 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
-    origin: [
-    "http://localhost:5173", 
-    "https://job-portal-frontend-jlwy.onrender.com" 
-  ],
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
@@ -58,6 +55,7 @@ routefiles.forEach((file) => {
     console.log(`❌ Error importing ${file}:`, err.message);
   });
 });
+
 
 
 app.get('/',(req,res)=>{
