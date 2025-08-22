@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import axios from '../utils/axios'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 const UserPage=()=>{
@@ -11,7 +11,7 @@ const UserPage=()=>{
 
 
 
-   useState(()=>{
+   useEffect(()=>{
      const fetchData=async()=>{
         try {
             const res=await axios.get('/user',{withCredentials:true});
