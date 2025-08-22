@@ -21,17 +21,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
+  origin: [
       "http://localhost:5173",
       "https://job-portal-frontend-jlwy.onrender.com"
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+    ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
