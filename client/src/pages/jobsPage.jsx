@@ -129,7 +129,7 @@ const JobsPage = () => {
              {loading?(<p className="sm:text-4xl text-red-400">Loading....</p>):jobs.length === 0 && !error ? (
                 <p>No jobs available</p>
             ) : (
-                <div className="flex gap-2 sm:flex-row flex-col   ">
+                <div className="flex gap-2 sm:flex-row flex-col flex-wrap sm:gap-12 sm:p-4  ">
                     {jobs.map((job, index) => (
                         <div key={index} className="flex rounded-2xl sm:w-108 sm:h-82 flex-col border-2 border-gray-400 justify-between p-1 sm:p-4 box-border">
                             <div className="flex flex-col gap-3 sm:gap-8 items-center">
