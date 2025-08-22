@@ -14,7 +14,7 @@ const UserProfile = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await axios.get('/user');
+                const res = await axios.get('/user',{withCredentials:true});
                 setUser(res.data);
 
             } catch (error) {
