@@ -30,9 +30,13 @@ export const registerUser = async (req, res) => {
             expiresIn: '7d',
         })
 
+        const isProduction = process.env.NODE_ENV === "production";
+
+
         res.cookie('token', token, {
             httpOnly: true,
-            secure: false, // only in production (https)
+            secure: isProduction,      
+            sameSite: isProduction ? "none" : "lax", 
             maxAge: 7 * 24 * 60 * 60 * 1000,
         }).status(201).json({
             id: user._id,
@@ -77,12 +81,15 @@ export const loginUser = async (req, res) => {
         })
 
 
+        const isProduction = process.env.NODE_ENV === "production";
+
+
 
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure: true, 
-            sameSite: 'None',
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000,
         }).status(200).json({
             id: user._id,
