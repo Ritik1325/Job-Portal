@@ -7,30 +7,34 @@ const JobsPage = () => {
     const [jobs, setJobs] = useState([]);
     const [error, setError] = useState(null);
     const [mark, setMark] = useState(false);
-    const [loading,setLoading]=useState(true);
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const user = JSON.parse(localStorage.getItem("user"));
+                if (user) {
+                    console.log("Logged in as:", user.name);
+                }
                 const res = await axios.get('/jobs', { withCredentials: true });
 
                 if (Array.isArray(res.data)) {
                     setJobs(res.data);
-                    
+
                 } else {
                     console.error("Expected array but got:", res.data);
                     setJobs([]);
                 }
             } catch (error) {
                 console.error("Error fetching jobs:", error.response?.data || error.message);
-                setTimeout(()=>{
+                setTimeout(() => {
                     setError("Error fetching Jobs");
-                },1500);
+                }, 1500);
                 setError('');
                 setJobs([]);
-            }finally{
+            } finally {
                 setLoading(false);
             }
         };
@@ -45,16 +49,16 @@ const JobsPage = () => {
 
             if (res.status === 200 || res.status === 201) {
                 alert("applied for the job");
-                 setError('')
+                setError('')
                 navigate('/');
 
             }
 
         } catch (error) {
             console.error("Error applying to job:", error.response?.data || error.message);
-            setTimeout(()=>{
+            setTimeout(() => {
                 setError(error.response?.data?.message || "Failed to apply");
-            },1500)
+            }, 1500)
             setError('');
 
 
@@ -68,18 +72,18 @@ const JobsPage = () => {
 
             if (res.status === 200 || res.status === 201) {
                 alert(res.data);
-                 setError('')
+                setError('')
                 navigate('/');
 
             }
 
         } catch (error) {
             console.error("Error withdrawing to job:", error.response?.data.message || error.message);
-            setTimeout(()=>{
-                 setError(error.response?.data?.message || "Failed to withdraw");
-            },1500)
+            setTimeout(() => {
+                setError(error.response?.data?.message || "Failed to withdraw");
+            }, 1500)
             setError('');
-            
+
 
 
         }
@@ -98,7 +102,7 @@ const JobsPage = () => {
                     setError('')
                     navigate('/');
                 }
-            }else{
+            } else {
                 const res = await axios.post(`/jobs/bookmarks/${id}`, {}, { withCredentials: true });
                 alert("removed bookmark");
                 setMark(false);
@@ -107,11 +111,11 @@ const JobsPage = () => {
             }
         } catch (error) {
             console.error("Error Bookmarking the job:", error.response?.data || error.message);
-            
-           setTimeout(()=>{
-             setError(error.response?.data?.message || "Failed to bookmark");
-           },1500);
-           setError('');
+
+            setTimeout(() => {
+                setError(error.response?.data?.message || "Failed to bookmark");
+            }, 1500);
+            setError('');
 
         }
 
@@ -122,11 +126,11 @@ const JobsPage = () => {
 
 
     return (
-        
+
         <div className="flex flex-col items-center ">
             <h2 className="text-3xl font-bold mb-4">Available Jobs</h2>
             {error && <p className="text-red-500">{error}</p>}
-             {loading?(<p className="sm:text-4xl text-red-400">Loading....</p>):jobs.length === 0 && !error ? (
+            {loading ? (<p className="sm:text-4xl text-red-400">Loading....</p>) : jobs.length === 0 && !error ? (
                 <p>No jobs available</p>
             ) : (
                 <div className="flex gap-2 sm:flex-row flex-col flex-wrap sm:gap-12 sm:p-4  ">
@@ -152,7 +156,7 @@ const JobsPage = () => {
             )}
         </div>
 
-        
+
     );
 };
 

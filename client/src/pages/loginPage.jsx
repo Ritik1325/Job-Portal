@@ -20,6 +20,7 @@ const LoginPage = () => {
         const res=await axios.post('/login',{email,password},{withCredentials:true});
 
         console.log("Login success",res.data);
+        localStorage.setItem("user", JSON.stringify(res.data)); 
 
         alert("LoggedIn successfully");
 
