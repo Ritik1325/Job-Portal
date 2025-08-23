@@ -1,7 +1,7 @@
 import react, { useEffect, useState } from 'react'
 import axios from '../utils/axios'
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../context/usercontext';
+import { useUser } from '../context/usercontext.jsx';
 
 
 
