@@ -25,7 +25,7 @@ const RegisterPage = () => {
       console.log("Register success", res.data);
 
       
-      setUser(res.data.user);
+      setUser(res.data);
 
       
       if (res.data.token) {
