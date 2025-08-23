@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from '../utils/axios';
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../context/usercontext.jsx";
+import { useUser } from "../context/usercontext";
 
 const LogoutPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { setUser } = useUser();   // ✅ use context
+  const { setUser } = useUser();   
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const LogoutPage = () => {
         setLoading(true);
         await axios.post('/logout', {}, { withCredentials: true });
 
-        // ✅ Clear local storage properly
+        
         localStorage.removeItem('user');
 
-        // ✅ Reset context
+        
         setUser(null);
 
         alert("Logged out successfully");

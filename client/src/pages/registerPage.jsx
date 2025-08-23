@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import axios from '../utils/axios'
 import { useNavigate } from 'react-router-dom';
-import { useUser } from './context/usercontext.jsx';
+import { useUser } from '../context/usercontext';
+
 
 const RegisterPage = () => {
   const [password, setPassword] = useState('');
@@ -10,7 +11,7 @@ const RegisterPage = () => {
   const [role, setRole] = useState('');
   const [error, setError] = useState('');
 
-  const { setUser } = useUser();  
+  const { setUser } = useUser() ; 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
