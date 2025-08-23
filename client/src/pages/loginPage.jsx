@@ -1,11 +1,14 @@
 import react, { useEffect, useState } from 'react'
 import axios from '../utils/axios'
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/usercontext';
 
 
 
 
 const LoginPage = () => {
+
+    const {setUser,fetchUser}=useUser();
 
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -19,8 +22,7 @@ const LoginPage = () => {
      try {
         const res=await axios.post('/login',{email,password},{withCredentials:true});
 
-        console.log("Login success",res.data);
-        localStorage.setItem("user", JSON.stringify(res.data)); 
+        await fetchUser();
 
         alert("LoggedIn successfully");
 
