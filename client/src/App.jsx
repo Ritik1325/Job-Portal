@@ -24,6 +24,9 @@ const App = () => {
       <div className="flex justify-between sm:p-8 p-2 bg-amber-300 ">
         <h1 className="sm:text-3xl font-extrabold font-serif">KrmAtth</h1>
         <div className="flex gap-4  sm:gap-12 box-border">
+
+
+          
           <NavLink className='sm:text-2xl font-bold' to={'/'}>Home</NavLink>
           <NavLink className='sm:text-2xl font-bold' to={'/login'}>Login</NavLink>
           <NavLink className='sm:text-2xl font-bold' to={'/register'}>Register</NavLink>
