@@ -1,14 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import axios from '../utils/axios'
 import React, { useEffect, useState } from "react";
-import { useUser } from '../context/usercontext';
 
 
 const UserPage=()=>{
 
     const [name,setName]=useState('');
     const [role,setRole]=useState('')
-    const {user}=useUser();
+    
    
 
 
@@ -31,7 +30,7 @@ const UserPage=()=>{
 
 
      fetchData();
-   },[user])
+   },[])
 
 
 
