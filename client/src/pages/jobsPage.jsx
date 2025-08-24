@@ -71,7 +71,7 @@ const JobsPage = () => {
             const res = await axios.post(`/jobs/withdraw/${id}`, {}, { withCredentials: true });
 
             if (res.status === 200 || res.status === 201) {
-                alert(res.data);
+                alert(res.data.message);
                 setError('')
                 navigate('/');
 
