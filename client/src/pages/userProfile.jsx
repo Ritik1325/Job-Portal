@@ -7,31 +7,17 @@ import { useUser } from "../context/usercontext";
 
 
 const UserProfile = () => {
-
+   const [error,setError]=useState();
     
+   const { user, loading } = useUser();
 
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
+  if (loading) {
+    return <p>Loading user...</p>;
+  }
 
-    useEffect(() => {
-        const getUser = async () => {
-            try {
-                const res = await axios.get('/user',{withCredentials:true});
-                setUser(res.data || res.data.user);
-
-            } catch (error) {
-                console.log(error.response?.data?.message);
-                setError(error.response?.data?.message || "Error fetching User");
-
-
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        getUser();
-    }, [])
+  if (!user) {
+    setError("No user found. Please login.");
+  }
 
 
 
