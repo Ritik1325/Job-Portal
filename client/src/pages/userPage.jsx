@@ -6,9 +6,7 @@ import { useUser } from '../context/usercontext';
 
 const UserPage=()=>{
 
-    
-
-    const {fetchUser,user}=useUser();
+   const {setUser,user}=useUser();
    
 
 
@@ -16,8 +14,8 @@ const UserPage=()=>{
    useEffect(()=>{
      const fetchData=async()=>{
         try {
-             await fetchUser()
-            
+            const res=await axios.get('/user',{withCredentials:true});
+            setUser(res.data.User);
 
         } catch (error) {
             console.log(error?.response?.data?.message || "Error fetching")
@@ -27,7 +25,7 @@ const UserPage=()=>{
 
 
      fetchData();
-   },[user])
+   },[])
 
 
 
