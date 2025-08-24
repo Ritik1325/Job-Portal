@@ -280,7 +280,7 @@ export const bookmarkJob = async(req, res) => {
 
        
 
-        return res.status(200).json(user);
+        return res.status(200).json({message:"Bookmared"});
 
     } catch (error) {
         return res.status(500).json({message:error});
