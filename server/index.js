@@ -16,9 +16,12 @@ dotenv.config();
 
 const app=express();
 
+app.set("trust proxy", 1);
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
 
 app.use(cors({
   origin: [
@@ -28,6 +31,8 @@ app.use(cors({
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+
+
 
 
 
