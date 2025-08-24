@@ -15,7 +15,7 @@ export  const UserAsRole=async(req,res)=>{
             return res.status(400).json({message:"Error fetching User"});
         }
 
-        return res.status(200).json(user);
+        return res.status(200).json({User:user});
 
 
 

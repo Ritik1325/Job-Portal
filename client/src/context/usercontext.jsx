@@ -14,9 +14,9 @@ export const UserProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await axios.get("/user", { withCredentials: true });
-      if (res.data || res.data.user) {
-        setUser(res.data || res.data.user );
-        localStorage.setItem("user", JSON.stringify(res.data || res.data.user));
+      if (res.data.User ) {
+        setUser(res.data.User );
+        localStorage.setItem("user", JSON.stringify(res.data.User));
       }
     } catch (error) {
       console.error("Error fetching user:", error?.response?.data || error.message);

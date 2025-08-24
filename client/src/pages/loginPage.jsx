@@ -8,7 +8,7 @@ import { useUser } from '../context/usercontext';
 
 const LoginPage = () => {
 
-    const {setUser,fetchUser}=useUser();
+    const {fetchUser}=useUser();
 
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -20,9 +20,9 @@ const LoginPage = () => {
    const handleSubmit=async(e)=>{
     e.preventDefault();
      try {
-        const res=await axios.post('/login',{email,password},{withCredentials:true});
+        await axios.post('/login',{email,password},{withCredentials:true});
 
-        setUser(res.data);
+        await fetchUser();
         
 
         
