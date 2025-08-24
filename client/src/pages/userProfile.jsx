@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import axios from '../utils/axios'
-import { useUser } from "../context/usercontext"
 
 
 
@@ -8,23 +7,29 @@ import { useUser } from "../context/usercontext"
 
 const UserProfile = () => {
 
-   const {fetchUser,user,loading}=useUser();
-   const [error,setError]=useState('');
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(true)
 
-   const User=async()=>{
-    try {
-       await fetchUser();
-        
-    } catch (error) {
-        setError("Error fetching user");    
-    }
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                const res = await axios.get('/user',{withCredentials:true});
+                setUser(res.data.User);
 
-   }
+            } catch (error) {
+                console.log(error.response?.data?.message);
+                setError(error.response?.data?.message || "Error fetching User");
 
 
-   useEffect(()=>{
-      User();
-   },[user]);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        getUser();
+    }, [])
+
 
 
 
