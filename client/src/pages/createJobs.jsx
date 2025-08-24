@@ -40,7 +40,7 @@ const CreateJobs = () => {
             <h1 className='text-4xl text-orange-400 font-extrabold text-center'>Create Job</h1>
             <div className='max-w-[700px]  border-2 border-gray-300 rounded-lg m-auto  mt-8'>
 
-                <form  onSubmit={handleSubmit} className='flex flex-col box-border'>
+                <form onSubmit={handleSubmit} className='flex flex-col box-border'>
                     {error && (
                         <h1 className='text-xl text-red-500 text-center font-bold mt-2'>{error}</h1>
                     )}
@@ -54,7 +54,17 @@ const CreateJobs = () => {
                     </div>
                     <div className='flex flex-col p-6 '>
                         <label className='font-bold mb-2' htmlFor="mode">mode</label>
-                        <input className='rounded-md focus:ring-2 border-2 border-blue-300 p-4 focus:border-blue-500 outline-none' type="text" name='mode' value={mode} onChange={(e) => setMode(e.target.value)} placeholder='halftime or fulltime' required />
+                        <select
+                            className='rounded-md focus:ring-2 border-2 border-blue-300 p-4 focus:border-blue-500 outline-none'
+                            name='mode'
+                            value={mode}
+                            onChange={(e) => setMode(e.target.value)}
+                            required
+                        >
+                            <option value="">Select Mode</option>
+                            <option value="fulltime">Full-time</option>
+                            <option value="halftime">Part-time</option>
+                        </select>
                     </div>
                     <div className='flex flex-col p-6 '>
                         <label className='font-bold mb-2' htmlFor="location">location</label>
