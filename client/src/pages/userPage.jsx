@@ -17,7 +17,7 @@ const UserPage=()=>{
         <div className='flex justify-between text-center items-center mb-12 '>
             <img className='sm:w-22 w-8 mix-blend-multiply' src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=" alt="" />
 
-            <h1 className='sm:text-xl text-blue-500 font-bold tracking-tighter'>{user.name || "Username"}</h1>
+            <h1 className='sm:text-xl text-blue-500 font-bold tracking-tighter'>{user?.name || "Username"}</h1>
         </div>
 
         <div className='flex flex-col space-y-6 justify-center items-center gap-12'>
