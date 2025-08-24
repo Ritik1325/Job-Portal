@@ -15,7 +15,7 @@ const UserPage=()=>{
      const fetchData=async()=>{
         try {
             const res=await axios.get('/user',{withCredentials:true});
-            const {name,role}=res.data || res.data.user;
+            const {name,role}=res.data.User;
 
             setName(name);
             setRole(role);
