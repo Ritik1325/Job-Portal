@@ -15,7 +15,7 @@ const UserProfile = () => {
         const getUser = async () => {
             try {
                 const res = await axios.get('/user',{withCredentials:true});
-                setUser(res.data.User);
+                setUser(res.data || res.data.user);
 
             } catch (error) {
                 console.log(error.response?.data?.message);
