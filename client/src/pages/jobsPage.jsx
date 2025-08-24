@@ -94,7 +94,7 @@ const JobsPage = () => {
     const bookmarkJobs = async (id) => {
          try {
                 const res = await axios.post(`/jobs/bookmarks/${id}`, {}, { withCredentials: true });
-                alert(res.data?.message);
+                alert(res.data?.message==="removed from bookmark"?res.data?.message:"Bookmarked");
                 navigate('/');
     
             } catch (error) {
