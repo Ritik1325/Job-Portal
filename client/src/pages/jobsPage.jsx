@@ -92,32 +92,15 @@ const JobsPage = () => {
 
 
     const bookmarkJobs = async (id) => {
-        try {
-            if (mark === false) {
+         try {
                 const res = await axios.post(`/jobs/bookmarks/${id}`, {}, { withCredentials: true });
-
-                if (res.status === 200 || res.status === 201) {
-                    alert("bookmarked  the job");
-                    setMark(true);
-                    setError('')
-                    navigate('/');
-                }
-            } else {
-                const res = await axios.post(`/jobs/bookmarks/${id}`, {}, { withCredentials: true });
-                alert("removed bookmark");
-                setMark(false);
-                setError('')
+                alert(res.data?.message);
                 navigate('/');
+    
+            } catch (error) {
+                setError(error.response?.data?.message || "Could not bookmark job");
             }
-        } catch (error) {
-            console.error("Error Bookmarking the job:", error.response?.data || error.message);
-
-            setTimeout(() => {
-                setError(error.response?.data?.message || "Failed to bookmark");
-            }, 1500);
-            setError('');
-
-        }
+       
 
     }
 
