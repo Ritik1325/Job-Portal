@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import axios from '../utils/axios'
+
+import { useUser } from "../context/usercontext";
 
 
 
@@ -7,28 +7,7 @@ import axios from '../utils/axios'
 
 const UserProfile = () => {
 
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        const getUser = async () => {
-            try {
-                const res = await axios.get('/user',{withCredentials:true});
-                setUser(res.data);
-
-            } catch (error) {
-                console.log(error.response?.data?.message);
-                setError(error.response?.data?.message || "Error fetching User");
-
-
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        getUser();
-    }, [])
+    const {user,loading}=useUser();
 
 
 

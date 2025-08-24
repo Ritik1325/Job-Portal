@@ -22,7 +22,10 @@ const LoginPage = () => {
      try {
         const res=await axios.post('/login',{email,password},{withCredentials:true});
 
-        await fetchUser();
+        setUser(res.data);
+        
+
+        
 
         alert("LoggedIn successfully");
 
